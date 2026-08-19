@@ -1,0 +1,10 @@
+{
+  "name":"BALI Booking Admin",
+  "short_name":"BALI Booking",
+  "start_url":"/admin",
+  "display":"standalone",
+  "background_color":"#050607",
+  "theme_color":"#050607",
+  "description":"Календарь, смены, брони и клиентская база ночного клуба BALI",
+  "icons":[{"src":"./icon.svg","sizes":"512x512","type":"image/svg+xml","purpose":"any maskable"}]
+}

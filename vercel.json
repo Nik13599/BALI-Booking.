@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "public": false,
+  "cleanUrls": true,
+  "rewrites": [
+    {"source": "/admin", "destination": "/web/index.html"},
+    {"source": "/", "destination": "/web/index.html"}
+  ],
+  "headers": [
+    {"source": "/web/(.*)", "headers": [
+      {"key":"Cache-Control","value":"public, max-age=0, must-revalidate"},
+      {"key":"X-Content-Type-Options","value":"nosniff"},
+      {"key":"Referrer-Policy","value":"same-origin"}
+    ]}
+  ]
+}

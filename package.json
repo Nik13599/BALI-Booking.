@@ -1,0 +1,7 @@
+{
+  "name": "bali-booking",
+  "private": true,
+  "version": "20.0.0",
+  "type": "module",
+  "scripts": {"check":"node --check web/app.js && node --check api/rpc.js"}
+}

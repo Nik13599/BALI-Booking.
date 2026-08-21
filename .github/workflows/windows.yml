@@ -1,0 +1,21 @@
+name: Build Windows
+on: [workflow_dispatch, push, pull_request]
+jobs:
+ build:
+  if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message || '', '[build]')
+  runs-on: windows-latest
+  steps:
+   - name: Clone source to a Windows-safe path
+     shell: pwsh
+     working-directory: D:\a
+     run: |
+       if (Test-Path bali-src) { Remove-Item -Recurse -Force bali-src }
+       git clone --depth 1 --branch supabase-v1 https://github.com/Nik13599/BALI-Booking. bali-src
+   - uses: actions/setup-dotnet@v4
+     with: { dotnet-version: '8.0.x' }
+   - name: Build Windows app
+     shell: pwsh
+     working-directory: D:\a
+     run: dotnet publish D:\a\bali-src\windows\BaliBooking.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o D:\a\bali-dist
+   - uses: actions/upload-artifact@v4
+     with: { name: BALI-Booking-Windows, path: D:\a\bali-dist\** }
